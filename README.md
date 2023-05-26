@@ -103,7 +103,7 @@ POST /transaction
 Request Body:
 {
   "amount": 100.0,
-  "type": "DEPOSIT"
+  "transactionType": "DEPOSIT"
 }
 ```
 
@@ -140,7 +140,8 @@ POST /user/register
 
 Request Body:
 {
-  "name": "John Doe",
+  "firstName": "John",
+  "lastName": "Doe",
   "email": "user@example.com",
   "password": "password"
 }
