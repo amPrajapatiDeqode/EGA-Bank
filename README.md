@@ -146,6 +146,31 @@ Request Body:
 }
 ```
 
+## Testing
+
+Unit tests have been implemented to ensure the functionality and reliability of the banking application. The tests cover various scenarios to validate different components and endpoints.
+
+To run the unit tests, follow these steps:
+
+1. Make sure the banking application and the associated containers are running using Docker Compose.
+
+2. Open a terminal or command prompt.
+
+3. Navigate to the cloned repository.
+
+4. Run the following command to execute the unit tests:
+
+   ```bash
+   ./mvnw test
+   ```
+
+   The tests will be executed, and the results will be displayed in the terminal.
+
+   Note: The above command assumes you are using Maven Wrapper (`mvnw`). If you have Maven installed globally, you can use `mvn test` instead.
+
+5. Review the test results to ensure that all tests pass successfully.
+
+
 ## Additional Information
 
 - The application uses JWT tokens for authentication. The tokens should be included in the `Authorization` header as a bearer token.
