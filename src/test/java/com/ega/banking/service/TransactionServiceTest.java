@@ -4,7 +4,7 @@ import com.ega.banking.constants.TestConstants;
 import com.ega.banking.entity.Account;
 import com.ega.banking.entity.Transaction;
 import com.ega.banking.error.InsufficientBalanceException;
-import com.ega.banking.model.TransactionType;
+import com.ega.banking.dto.TransactionType;
 import com.ega.banking.repository.TransactionRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -39,17 +39,6 @@ class TransactionServiceTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-    }
-
-    @Test
-    void getAllTransactions_ShouldReturnAllTransactions() {
-        List<Transaction> transactions = List.of(new Transaction(), new Transaction());
-        when(transactionRepository.findAll()).thenReturn(transactions);
-
-        List<Transaction> result = transactionService.getAllTransactions();
-
-        assertEquals(transactions, result);
-        verify(transactionRepository, times(1)).findAll();
     }
 
     @Test

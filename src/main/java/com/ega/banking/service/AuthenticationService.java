@@ -1,7 +1,7 @@
 package com.ega.banking.service;
 
 import com.ega.banking.config.JwtService;
-import com.ega.banking.model.LoginRequest;
+import com.ega.banking.dto.LoginRequest;
 import com.ega.banking.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;

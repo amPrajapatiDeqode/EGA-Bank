@@ -17,8 +17,10 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 public class SecurityConfiguration  {
 
     private final JwtAuthenticationFilter jwtAuthFilter;
+
     private final AuthenticationProvider authenticationProvider;
-    private final String[] PUBLIC_URLS = {"/auth/**", "*/register", "/v3/api-docs", "/v2/api-docs", "/swagger-resources/**", "/swagger-ui/**", "/webjars/**"};
+
+    private final String[] PUBLIC_URLS = {"/auth/**", "*/register", "/swagger-ui/**", "/v3/api-docs/**"};
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
@@ -36,6 +38,7 @@ public class SecurityConfiguration  {
                 .and()
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+        httpSecurity.cors();
         return httpSecurity.build();
     }
 }

@@ -1,13 +1,9 @@
-FROM openjdk:8-jdk-alpine
-LABEL maintainer="EGA EGA@email.com>"
+FROM maven as builder
+WORKDIR /build
+COPY . .
+RUN mvn clean package
 
+FROM openjdk:17-jdk-slim
 WORKDIR /app
-
-# Copy the Maven project definition and dependencies
-COPY pom.xml .
-COPY src ./src
-
-
-COPY target/docker-message-server-1.0.0.jar message-server-1.0.0.jar
-EXPOSE 8080
-ENTRYPOINT ["java","-jar","/message-server-1.0.0.jar"]
+COPY --from=builder /build/target/*.jar app.jar
+ENTRYPOINT ["java","-jar","/app/app.jar"]

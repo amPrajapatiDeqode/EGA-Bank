@@ -1,4 +1,4 @@
-package com.ega.banking.model;
+package com.ega.banking.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

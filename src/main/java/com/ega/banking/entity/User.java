@@ -1,18 +1,25 @@
 package com.ega.banking.entity;
 
+import com.ega.banking.constants.ApplicationConstants;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.GeneratedValue;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 
 import java.util.Collection;
 
@@ -22,24 +29,30 @@ import java.util.Collection;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "_user",
-        uniqueConstraints = @UniqueConstraint(
-        name = "email_unique",
-        columnNames = "email"
-))
+@Table(name = "_user")
 public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userId;
+
+    @NotBlank(message = ApplicationConstants.INVALID_FIRST_NAME)
     private String firstName;
+
+    @NotBlank(message = ApplicationConstants.INVALID_LAST_NAME)
     private String lastName;
+
+    @NotBlank(message = ApplicationConstants.INVALID_PASSWORD)
     private String password;
 
-    @Column(nullable = false)
+    @Email(message = ApplicationConstants.INVALID_EMAIL)
+    @Column(unique = true)
+    @NotBlank
     private String email;
+
     @Column(nullable = false)
     private long bankId;
+
     private long accountId;
 
     @Override

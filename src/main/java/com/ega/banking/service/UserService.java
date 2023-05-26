@@ -29,14 +29,13 @@ public class UserService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Transactional
-    public User registerUser(User user) {
+    public void registerUser(User user) {
         List<Long> allAccountNumber= accountRepository.getAllAccountId();
         Long accountNumber = accountUtil.generateAccountNumber(allAccountNumber);
         accountUtil.addAccount(user.getBankId(), accountNumber);
         user.setAccountId(accountNumber);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
-        return user;
     }
 
     public List<User> getAllUsers() {
@@ -45,5 +44,13 @@ public class UserService {
 
     public User getUserById(long id) {
         return userRepository.findById(id).orElseThrow(() -> new InvalidUserIdException());
+    }
+
+    public User getUserByEmail(String email) {
+        return (User) userRepository.findByEmail(email);
+    }
+
+    public User getUserByAccountId(long accountId) {
+        return userRepository.findUserByAccountId(accountId);
     }
 }

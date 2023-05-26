@@ -70,6 +70,3 @@ public class JwtService {
         return Keys.hmacShaKeyFor(keyBytes);
     }
 }
-//
-//    Store and delete JWT at frontend
-//    Pass JWT with every request in Auth header..

@@ -62,13 +62,7 @@ class UserServiceTest {
         when(userRepository.save(any(User.class))).thenReturn(user);
 
         // Act
-        User registeredUser = userService.registerUser(user);
-
-        // Assert
-        assertNotNull(registeredUser);
-        assertEquals(user, registeredUser);
-        assertEquals(TestConstants.ACCOUNT_NUMBER, registeredUser.getAccountId());
-        assertEquals(TestConstants.ENCRYPTED_USER_PASSWORD, registeredUser.getPassword());
+        userService.registerUser(user);
 
         verify(accountRepository, times(1)).getAllAccountId();
         verify(accountUtil, times(1)).generateAccountNumber(any());
