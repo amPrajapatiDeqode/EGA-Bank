@@ -171,6 +171,30 @@ To run the unit tests, follow these steps:
 5. Review the test results to ensure that all tests pass successfully.
 
 
+## Swagger API Documentation
+
+The banking application includes Swagger, a powerful tool for documenting and testing APIs. With Swagger, you can explore and interact with the application's endpoints directly from your browser.
+
+To access the Swagger UI, follow these steps:
+
+1. Ensure that the banking application is running using Docker Compose.
+
+2. Open your web browser.
+
+3. Enter the following URL:
+
+   ```
+   http://localhost:8080/swagger-ui.html
+   ```
+
+   The Swagger UI page will be displayed, showing a list of available endpoints, request/response details, and the ability to test the endpoints.
+
+   Note: The port `8080` is mapped to the `${SPRINGBOOT_APP_PORT}` specified in the `docker-compose.yml` file. Make sure to replace `${SPRINGBOOT_APP_PORT}` with the actual port number if you have modified it in the `docker-compose.yml` file.
+
+4. Explore the API documentation and use the Swagger UI to interact with the endpoints.
+
+
+
 ## Additional Information
 
 - The application uses JWT tokens for authentication. The tokens should be included in the `Authorization` header as a bearer token.
